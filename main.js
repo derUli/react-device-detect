@@ -36,6 +36,8 @@ var isIOS13Check = function isIOS13Check(type) {
 };
 
 function _typeof(obj) {
+  "@babel/helpers - typeof";
+
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
     _typeof = function (obj) {
       return typeof obj;
@@ -123,13 +125,13 @@ function _objectSpread2(target) {
     var source = arguments[i] != null ? arguments[i] : {};
 
     if (i % 2) {
-      ownKeys(source, true).forEach(function (key) {
+      ownKeys(Object(source), true).forEach(function (key) {
         _defineProperty(target, key, source[key]);
       });
     } else if (Object.getOwnPropertyDescriptors) {
       Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
     } else {
-      ownKeys(source).forEach(function (key) {
+      ownKeys(Object(source)).forEach(function (key) {
         Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
       });
     }
@@ -169,6 +171,19 @@ function _setPrototypeOf(o, p) {
   return _setPrototypeOf(o, p);
 }
 
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 function _assertThisInitialized(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -183,6 +198,25 @@ function _possibleConstructorReturn(self, call) {
   }
 
   return _assertThisInitialized(self);
+}
+
+function _createSuper(Derived) {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+  return function _createSuperInternal() {
+    var Super = _getPrototypeOf(Derived),
+        result;
+
+    if (hasNativeReflectConstruct) {
+      var NewTarget = _getPrototypeOf(this).constructor;
+
+      result = Reflect.construct(Super, arguments, NewTarget);
+    } else {
+      result = Super.apply(this, arguments);
+    }
+
+    return _possibleConstructorReturn(this, result);
+  };
 }
 
 var DEVICE_TYPES = {
@@ -271,7 +305,7 @@ var broPayload = function broPayload(isBrowser, browser, engine, os, ua) {
   };
 };
 var mobilePayload = function mobilePayload(type, device, os, ua) {
-  return _objectSpread2({}, type, {
+  return _objectSpread2(_objectSpread2({}, type), {}, {
     vendor: setDefaults(device.vendor),
     model: setDefaults(device.model),
     os: setDefaults(os.name),
@@ -556,7 +590,7 @@ var AndroidView = function AndroidView(_ref) {
       children = _ref.children,
       viewClassName = _ref.viewClassName,
       style = _ref.style;
-  return isAndroid ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+  return isAndroid ? renderWithFragment ? /*#__PURE__*/React__default.createElement(React.Fragment, null, children) : /*#__PURE__*/React__default.createElement("div", {
     className: viewClassName,
     style: style
   }, children) : null;
@@ -566,7 +600,7 @@ var BrowserView = function BrowserView(_ref2) {
       children = _ref2.children,
       viewClassName = _ref2.viewClassName,
       style = _ref2.style;
-  return isBrowser ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+  return isBrowser ? renderWithFragment ? /*#__PURE__*/React__default.createElement(React.Fragment, null, children) : /*#__PURE__*/React__default.createElement("div", {
     className: viewClassName,
     style: style
   }, children) : null;
@@ -576,7 +610,7 @@ var IEView = function IEView(_ref3) {
       children = _ref3.children,
       viewClassName = _ref3.viewClassName,
       style = _ref3.style;
-  return isIE ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+  return isIE ? renderWithFragment ? /*#__PURE__*/React__default.createElement(React.Fragment, null, children) : /*#__PURE__*/React__default.createElement("div", {
     className: viewClassName,
     style: style
   }, children) : null;
@@ -586,7 +620,7 @@ var IOSView = function IOSView(_ref4) {
       children = _ref4.children,
       viewClassName = _ref4.viewClassName,
       style = _ref4.style;
-  return isIOS ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+  return isIOS ? renderWithFragment ? /*#__PURE__*/React__default.createElement(React.Fragment, null, children) : /*#__PURE__*/React__default.createElement("div", {
     className: viewClassName,
     style: style
   }, children) : null;
@@ -596,7 +630,7 @@ var MobileView = function MobileView(_ref5) {
       children = _ref5.children,
       viewClassName = _ref5.viewClassName,
       style = _ref5.style;
-  return isMobile ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+  return isMobile ? renderWithFragment ? /*#__PURE__*/React__default.createElement(React.Fragment, null, children) : /*#__PURE__*/React__default.createElement("div", {
     className: viewClassName,
     style: style
   }, children) : null;
@@ -606,7 +640,7 @@ var TabletView = function TabletView(_ref6) {
       children = _ref6.children,
       viewClassName = _ref6.viewClassName,
       style = _ref6.style;
-  return isTablet ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+  return isTablet ? renderWithFragment ? /*#__PURE__*/React__default.createElement(React.Fragment, null, children) : /*#__PURE__*/React__default.createElement("div", {
     className: viewClassName,
     style: style
   }, children) : null;
@@ -616,7 +650,7 @@ var WinPhoneView = function WinPhoneView(_ref7) {
       children = _ref7.children,
       viewClassName = _ref7.viewClassName,
       style = _ref7.style;
-  return isWinPhone ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+  return isWinPhone ? renderWithFragment ? /*#__PURE__*/React__default.createElement(React.Fragment, null, children) : /*#__PURE__*/React__default.createElement("div", {
     className: viewClassName,
     style: style
   }, children) : null;
@@ -626,7 +660,7 @@ var MobileOnlyView = function MobileOnlyView(_ref8) {
       children = _ref8.children,
       viewClassName = _ref8.viewClassName,
       style = _ref8.style;
-  return isMobileOnly ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+  return isMobileOnly ? renderWithFragment ? /*#__PURE__*/React__default.createElement(React.Fragment, null, children) : /*#__PURE__*/React__default.createElement("div", {
     className: viewClassName,
     style: style
   }, children) : null;
@@ -636,7 +670,7 @@ var SmartTVView = function SmartTVView(_ref9) {
       children = _ref9.children,
       viewClassName = _ref9.viewClassName,
       style = _ref9.style;
-  return isSmartTV ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+  return isSmartTV ? renderWithFragment ? /*#__PURE__*/React__default.createElement(React.Fragment, null, children) : /*#__PURE__*/React__default.createElement("div", {
     className: viewClassName,
     style: style
   }, children) : null;
@@ -646,7 +680,7 @@ var ConsoleView = function ConsoleView(_ref10) {
       children = _ref10.children,
       viewClassName = _ref10.viewClassName,
       style = _ref10.style;
-  return isConsole ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+  return isConsole ? renderWithFragment ? /*#__PURE__*/React__default.createElement(React.Fragment, null, children) : /*#__PURE__*/React__default.createElement("div", {
     className: viewClassName,
     style: style
   }, children) : null;
@@ -656,7 +690,7 @@ var WearableView = function WearableView(_ref11) {
       children = _ref11.children,
       viewClassName = _ref11.viewClassName,
       style = _ref11.style;
-  return isWearable ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+  return isWearable ? renderWithFragment ? /*#__PURE__*/React__default.createElement(React.Fragment, null, children) : /*#__PURE__*/React__default.createElement("div", {
     className: viewClassName,
     style: style
   }, children) : null;
@@ -667,90 +701,89 @@ var CustomView = function CustomView(_ref12) {
       viewClassName = _ref12.viewClassName,
       style = _ref12.style,
       condition = _ref12.condition;
-  return condition ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+  return condition ? renderWithFragment ? /*#__PURE__*/React__default.createElement(React.Fragment, null, children) : /*#__PURE__*/React__default.createElement("div", {
     className: viewClassName,
     style: style
   }, children) : null;
 };
 
 function withOrientationChange(WrappedComponent) {
-  return (
-    /*#__PURE__*/
-    function (_React$Component) {
-      _inherits(_class, _React$Component);
+  return /*#__PURE__*/function (_React$Component) {
+    _inherits(_class, _React$Component);
 
-      function _class(props) {
-        var _this;
+    var _super = _createSuper(_class);
 
-        _classCallCheck(this, _class);
+    function _class(props) {
+      var _this;
 
-        _this = _possibleConstructorReturn(this, _getPrototypeOf(_class).call(this, props));
-        _this.isEventListenerAdded = false;
-        _this.handleOrientationChange = _this.handleOrientationChange.bind(_assertThisInitialized(_this));
-        _this.onOrientationChange = _this.onOrientationChange.bind(_assertThisInitialized(_this));
-        _this.onPageLoad = _this.onPageLoad.bind(_assertThisInitialized(_this));
-        _this.state = {
-          isLandscape: false,
-          isPortrait: false
-        };
-        return _this;
+      _classCallCheck(this, _class);
+
+      _this = _super.call(this, props);
+      _this.isEventListenerAdded = false;
+      _this.handleOrientationChange = _this.handleOrientationChange.bind(_assertThisInitialized(_this));
+      _this.onOrientationChange = _this.onOrientationChange.bind(_assertThisInitialized(_this));
+      _this.onPageLoad = _this.onPageLoad.bind(_assertThisInitialized(_this));
+      _this.state = {
+        isLandscape: false,
+        isPortrait: false
+      };
+      return _this;
+    }
+
+    _createClass(_class, [{
+      key: "handleOrientationChange",
+      value: function handleOrientationChange() {
+        if (!this.isEventListenerAdded) {
+          this.isEventListenerAdded = true;
+        }
+
+        var orientation = window.innerWidth > window.innerHeight ? 90 : 0;
+        this.setState({
+          isPortrait: orientation === 0,
+          isLandscape: orientation === 90
+        });
       }
-
-      _createClass(_class, [{
-        key: "handleOrientationChange",
-        value: function handleOrientationChange() {
+    }, {
+      key: "onOrientationChange",
+      value: function onOrientationChange() {
+        this.handleOrientationChange();
+      }
+    }, {
+      key: "onPageLoad",
+      value: function onPageLoad() {
+        this.handleOrientationChange();
+      }
+    }, {
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        if ((typeof window === "undefined" ? "undefined" : _typeof(window)) !== undefined && isMobile) {
           if (!this.isEventListenerAdded) {
-            this.isEventListenerAdded = true;
+            this.handleOrientationChange();
+            window.addEventListener("load", this.onPageLoad, false);
+          } else {
+            window.removeEventListener("load", this.onPageLoad, false);
           }
 
-          var orientation = window.innerWidth > window.innerHeight ? 90 : 0;
-          this.setState({
-            isPortrait: orientation === 0,
-            isLandscape: orientation === 90
-          });
+          window.addEventListener("resize", this.onOrientationChange, false);
         }
-      }, {
-        key: "onOrientationChange",
-        value: function onOrientationChange() {
-          this.handleOrientationChange();
-        }
-      }, {
-        key: "onPageLoad",
-        value: function onPageLoad() {
-          this.handleOrientationChange();
-        }
-      }, {
-        key: "componentDidMount",
-        value: function componentDidMount() {
-          if ((typeof window === "undefined" ? "undefined" : _typeof(window)) !== undefined && isMobile) {
-            if (!this.isEventListenerAdded) {
-              this.handleOrientationChange();
-              window.addEventListener("load", this.onPageLoad, false);
-            } else {
-              window.removeEventListener("load", this.onPageLoad, false);
-            }
+      }
+    }, {
+      key: "componentWillUnmount",
+      value: function componentWillUnmount() {
+        window.removeEventListener("resize", this.onOrientationChange, false);
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        return /*#__PURE__*/React__default.createElement(WrappedComponent, _extends({}, this.props, {
+          isLandscape: this.state.isLandscape,
+          isPortrait: this.state.isPortrait
+        }));
+      }
+    }]);
 
-            window.addEventListener("resize", this.onOrientationChange, false);
-          }
-        }
-      }, {
-        key: "componentWillUnmount",
-        value: function componentWillUnmount() {
-          window.removeEventListener("resize", this.onOrientationChange, false);
-        }
-      }, {
-        key: "render",
-        value: function render() {
-          return React__default.createElement(WrappedComponent, _extends({}, this.props, {
-            isLandscape: this.state.isLandscape,
-            isPortrait: this.state.isPortrait
-          }));
-        }
-      }]);
-
-      return _class;
-    }(React__default.Component)
-  );
+    return _class;
+  }(React__default.Component);
 }
 
 exports.AndroidView = AndroidView;
